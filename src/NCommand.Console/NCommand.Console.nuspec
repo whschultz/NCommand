@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>$author$</authors>
+    <description>$description$</description>
+    <summary>$description$</summary>
+    <copyright>$author$</copyright>
+    <tags>Console, Task, Command</tags>
+    <title>NCommand.Console</title>
+    <!--<projectUrl></projectUrl>
+        <licenseUrl></licenseUrl>-->
+  </metadata>
+  <files>
+    <file src="bin\Release\NCommand.Console.dll" target="lib\net45" />
+    <file src="bin\Release\NCommand.Console.xml" target="lib\net45" />
+  </files>
+</package>

@@ -1,0 +1,114 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Tectil.NCommand.Contract;
+
+namespace Tectil.NCommand
+{
+    public class CommandRunner
+        : ICommandRunner
+    {
+
+        #region ctx
+
+        private readonly ICommandParser _parser;
+        private readonly ICommandLookup _lookup;
+
+        public CommandRunner(ICommandParser parser, ICommandLookup lookup)
+        {
+            _parser = parser;
+            _lookup = lookup;
+        }
+
+        #endregion
+        
+        /// <summary>
+        /// Validate command (parse, find and compare arguments)
+        /// </summary>
+        /// <param name="commandline"></param>
+        /// <returns></returns>
+        public CommandResult Validate(string commandline)
+        {
+            var result = ValidateDo(commandline);
+            return result.Item1;
+        }
+
+        /// <summary>
+        /// Run command (parse, find, compare arguments and execute if ok)
+        /// </summary>
+        /// <param name="commandline"></param>
+        /// <returns></returns>
+        public CommandResult Run(string commandline)
+        {
+            // Validate
+            var result = ValidateDo(commandline);
+
+            // Run
+            if (result.Item1.State == ResultState.Success)
+            {
+                var res = _lookup.Run(result.Item3, result.Item2.ToArray());
+                result.Item1.Result = res.Item2;
+                result.Item1.State = res.Item1 ? ResultState.Success : ResultState.ErrorWhileExecuting;
+            }
+
+            // Result
+            return result.Item1;
+        }
+
+        #region Private
+
+        private Tuple<CommandResult, List<object>, CommandInfo> ValidateDo(string commandline)
+        {
+            // Prepare
+            var result = new CommandResult();
+
+            // Parse input
+            List<KeyValuePair<string, object>> args = _parser.Parse(commandline).ToList();
+            if (!args.Any())
+            {
+
+                // Parsing error
+                result.State = ResultState.ParsingError;
+                return new Tuple<CommandResult, List<object>, CommandInfo>(result, null, null);
+            }
+
+            // System commands
+            if (args.First().Key == "ncommandsystem")
+            {
+                // Show help / info: overview of available functions
+                if (args.Skip(1).FirstOrDefault().Key?.ToLower() == "help")
+                {
+                    result.State = ResultState.ShowHelpOverview;
+                    result.CommandInfo = new CommandInfo() { CommandName = "ncommandsystem.help" };
+                    result.Result = _lookup.Commands;
+                    return new Tuple<CommandResult, List<object>, CommandInfo>(result, null, null);
+                }
+            }
+
+            // Command by name
+            var command = _lookup.GetCommand(args.First().Key);
+            result.CommandInfo = command;
+            if (command == null)
+            {
+                result.State = ResultState.UnknownCommand;
+                return new Tuple<CommandResult, List<object>, CommandInfo>(result, null, null);
+            }
+
+            // Find missing arguments
+            var mapper = new CommandMapper();
+            var mapped = mapper.Map(args.Skip(1), command.Arguments);
+            if (mapped.State == ResultState.MissingArguments)
+            {
+                result.State = ResultState.MissingArguments;
+                result.MissingArguments = mapped.MissingArguments;
+                return new Tuple<CommandResult, List<object>, CommandInfo>(result, null, null);
+            }
+
+            // Result
+            result.State = ResultState.Success;
+            return new Tuple<CommandResult, List<object>, CommandInfo>(result, mapped.ResultArguments, command);
+        }
+
+        #endregion
+    }
+}
