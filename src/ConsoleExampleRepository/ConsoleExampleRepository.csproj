@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0E1616F9-5899-48BB-B9CE-0972AEC4069E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{D7D4BD0E-4F6E-494D-84FE-A9E9A4A89F72}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tectil.NCommand.ConsoleExample</RootNamespace>
-    <AssemblyName>NCommand.ConsoleExample</AssemblyName>
+    <RootNamespace>NCommand.ConsoleExampleRepository</RootNamespace>
+    <AssemblyName>NCommand.ConsoleExampleRepository</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -42,22 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="ITestRepository.cs" />
+    <Compile Include="TestRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ExampleCommands.cs" />
+    <Compile Include="TestRepositoryCommands.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ConsoleExampleRepository\ConsoleExampleRepository.csproj">
-      <Project>{d7d4bd0e-4f6e-494d-84fe-a9e9a4a89f72}</Project>
-      <Name>ConsoleExampleRepository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NCommand.Console\NCommand.Console.csproj">
-      <Project>{7DDCB0AD-2B11-4FA1-8EB0-5AD2F5DCA137}</Project>
-      <Name>NCommand.Console</Name>
-    </ProjectReference>
     <ProjectReference Include="..\NCommand\NCommand.csproj">
       <Project>{eb8a2c3f-39de-4ef3-83ba-f334c617c47c}</Project>
       <Name>NCommand</Name>
