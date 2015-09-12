@@ -17,7 +17,7 @@ namespace Tectil.NCommand
     ///     var b = Consoler.Run(args);
     /// }
     /// </example>
-    public static class Consoler
+    public static class NCommanderConsoleApp
     {
         /// <summary>
         /// IO. Do console commands on this.
@@ -27,19 +27,20 @@ namespace Tectil.NCommand
         /// <summary>
         /// Run command in console.
         /// </summary>
+        /// <param name="commander"></param>
         /// <param name="args"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        public static bool Run(string[] args, Mode mode = Mode.Interactive)
+        public static bool RunConsole(this NCommanderApp commander, string[] args, Mode mode = Mode.Interactive)
         {
             // Context
             IO = new IoManager();
 
             // Run
             var arguments = args.ToList();
-            var runner = new CommandRunner(new CommandParser(), new CommandLookup(Assembly.GetEntryAssembly()));
+            var runner = new CommandRunner(new CommandParser(), new CommandLookup(commander.Configuration));
             var result = runner.Run(string.Join(" ", arguments));
-            IO.WriteLine("> {0}", result.CommandInfo.CommandName);
+            IO.WriteLine("> {0}", result?.CommandInfo?.CommandName);
             IO.WriteLine("");
 
             // Mode: Execute

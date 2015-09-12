@@ -33,10 +33,6 @@
     <DocumentationFile>bin\Release\NCommand.Console.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NCommand, Version=0.1.5719.21507, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NCommand.0.1.5719.21507\lib\net45\NCommand.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,14 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Consoler.cs" />
+    <Compile Include="NCommanderConsoleApp.cs" />
     <Compile Include="Contract\Mode.cs" />
     <Compile Include="IoManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NCommand.Console.nuspec" />
-    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NCommand\NCommand.csproj">
+      <Project>{eb8a2c3f-39de-4ef3-83ba-f334c617c47c}</Project>
+      <Name>NCommand</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

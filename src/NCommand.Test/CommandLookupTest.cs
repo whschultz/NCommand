@@ -10,7 +10,9 @@ namespace Tectil.NCommand.Test
         [InlineData()]
         public void LookupTest()
         {
-            var target = new CommandLookup(Assembly.GetExecutingAssembly());
+            var configuration = new CommandConfiguration();
+            configuration.CommandAssemblies.Add(Assembly.GetExecutingAssembly());
+            var target = new CommandLookup(configuration);
             var commandRepository = target.Commands;
             target.Run(commandRepository.First(), new object[]{ "", 4, "de" });
             Assert.NotNull(commandRepository);

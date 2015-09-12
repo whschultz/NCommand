@@ -56,7 +56,7 @@ namespace Tectil.NCommand.ConsoleExample
         [Command()]
         public void HelloWorld(string myName)
         {
-            Consoler.IO.WriteLine("Hello World. My name is {0}.", myName);
+            NCommanderConsoleApp.IO.WriteLine("Hello World. My name is {0}.", myName);
         }
 
         /// <summary>

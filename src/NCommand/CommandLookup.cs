@@ -7,6 +7,9 @@ using Tectil.NCommand.Utilities;
 
 namespace Tectil.NCommand
 {
+    /// <summary>
+    /// Command lookup through reflection. Searching for methods with CommandAttribute.
+    /// </summary>
     public class CommandLookup
         : ICommandLookup
     {
@@ -16,14 +19,13 @@ namespace Tectil.NCommand
         private readonly IEnumerable<Assembly> _assemblies;
         private List<Tuple<CommandInfo, MethodInfo, Type>> _commands = null;
 
-        public CommandLookup(Assembly assembly)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandLookup"/> class.
+        /// </summary>
+        /// <param name="configuration">Configuration</param>
+        public CommandLookup(CommandConfiguration configuration)
         {
-            _assemblies = new [] { assembly };
-        }
-
-        public CommandLookup(IEnumerable<Assembly> assemblies)
-        {
-            _assemblies = assemblies;
+            _assemblies = configuration.CommandAssemblies;
         }
 
         #endregion

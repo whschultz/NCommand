@@ -5,6 +5,9 @@ using Tectil.NCommand.Utilities;
 
 namespace Tectil.NCommand
 {
+    /// <summary>
+    /// Parses as string and constructs an expression tree.
+    /// </summary>
     public class CommandParser
         : ICommandParser
     {

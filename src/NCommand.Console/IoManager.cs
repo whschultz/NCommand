@@ -13,7 +13,7 @@ namespace Tectil.NCommand
         #region ctx
 
         private StringWriter _consoleOut;
-        private TextWriter _consoleOutDefault;
+        private readonly TextWriter _consoleOutDefault;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IoManager"/> class.

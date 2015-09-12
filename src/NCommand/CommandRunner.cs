@@ -5,6 +5,9 @@ using Tectil.NCommand.Contract;
 
 namespace Tectil.NCommand
 {
+    /// <summary>
+    /// Entrypount to run a command.
+    /// </summary>
     public class CommandRunner
         : ICommandRunner
     {
@@ -14,6 +17,12 @@ namespace Tectil.NCommand
         private readonly ICommandParser _parser;
         private readonly ICommandLookup _lookup;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandRunner"/> class.
+        /// </summary>
+        /// <param name="parser">The parser.</param>
+        /// <param name="lookup">The lookup.</param>
+        /// <param name="configuration"></param>
         public CommandRunner(ICommandParser parser, ICommandLookup lookup)
         {
             _parser = parser;

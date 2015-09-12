@@ -32,10 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NCommand, Version=0.1.5719.21507, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NCommand.0.1.5719.21507\lib\net45\NCommand.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,12 +48,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NCommand.Console\NCommand.Console.csproj">
       <Project>{7DDCB0AD-2B11-4FA1-8EB0-5AD2F5DCA137}</Project>
       <Name>NCommand.Console</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NCommand\NCommand.csproj">
+      <Project>{eb8a2c3f-39de-4ef3-83ba-f334c617c47c}</Project>
+      <Name>NCommand</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

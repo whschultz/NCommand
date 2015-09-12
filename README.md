@@ -40,7 +40,8 @@ Example with `CommandAttribute`: To get started create a new console project and
 				[Argument(defaultValue: false)] bool overwrite 
 			)
 	        {
-	            return _provider.Copy (sourcePath, destinationPath, overwrite);
+				// do something
+	            return true;
 	        }
 		}
 	}	
@@ -49,7 +50,7 @@ Add following code to your console main:
 
     static void Main(string[] args)
     {
-    	var b = Consoler.Run(args);
+        NCommander.App.RunConsole(args);
     }
 
 The command `Copy` can be executed with following command line calls: 

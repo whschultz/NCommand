@@ -14,7 +14,9 @@ namespace Tectil.NCommand.Test
         //[InlineData(@"throwexceptiontask", ResultState.Success, ResultState.ErrorWhileExecuting)]
         public void RunnerTest(string commandLineArguments, ResultState expectedResultValidate, ResultState expectedResultRun)
         {
-            var runner = new CommandRunner(new CommandParser(), new CommandLookup(Assembly.GetExecutingAssembly()));
+            var configuration = new CommandConfiguration();
+            configuration.CommandAssemblies.Add(Assembly.GetExecutingAssembly());
+            var runner = new CommandRunner(new CommandParser(), new CommandLookup(configuration));
             var result1 = runner.Validate(commandLineArguments);
             var result2 = runner.Run(commandLineArguments);
 

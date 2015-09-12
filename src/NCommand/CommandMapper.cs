@@ -6,9 +6,18 @@ using Tectil.NCommand.Utilities;
 
 namespace Tectil.NCommand
 {
+    /// <summary>
+    /// Mapps arguments to parameters
+    /// </summary>
     public class CommandMapper
         : ICommandMapper
     {
+        /// <summary>
+        /// Maps the specified arguments to parameters.
+        /// </summary>
+        /// <param name="arguments">The arguments.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns></returns>
         public MappingResult Map(IEnumerable<KeyValuePair<string, object>> arguments, IEnumerable<ArgumentInfo> parameters)
         {
             // Prepare
@@ -17,7 +26,7 @@ namespace Tectil.NCommand
             if (parameters == null) parameters = new List<ArgumentInfo>();
 
             // Map
-            var mapped = parameters.GroupJoin(arguments.DefaultIfEmpty(), x => x.Name, x => x.Key, (x, y) => new Tuple<ArgumentInfo, object>(x, y.ToList().FirstOrDefault().Value) ).ToList();
+            var mapped = parameters.GroupJoin(arguments.DefaultIfEmpty(), x => x.Name, x => x.Key, (x, y) => new Tuple<ArgumentInfo, object>(x, y.ToList().FirstOrDefault().Value)).ToList();
             var missing = mapped.Where(x => x.Item1.DefaultValue == null && x.Item2 == null).ToList();
 
             // Has missing

@@ -17,7 +17,9 @@ namespace Tectil.NCommand.Test
             // Setup
             var parser = new CommandParser();
             var args = parser.Parse(commandLineArguments);
-            var lookup = new CommandLookup(Assembly.GetExecutingAssembly());
+            var configuration = new CommandConfiguration();
+            configuration.CommandAssemblies.Add(Assembly.GetExecutingAssembly());
+            var lookup = new CommandLookup(configuration);
             var command = lookup.GetCommand(args.First().Key);
             Assert.NotNull(args);
             Assert.NotNull(command);

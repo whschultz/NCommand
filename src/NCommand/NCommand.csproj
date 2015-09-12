@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandConfiguration.cs" />
+    <Compile Include="NCommanderApp.cs" />
     <Compile Include="Contract\ArgumentInfo.cs" />
     <Compile Include="Contract\CommandAttribute.cs" />
     <Compile Include="Contract\CommandInfo.cs" />
@@ -58,6 +60,7 @@
     <Compile Include="CommandParser.cs" />
     <Compile Include="Contract\ICommandParser.cs" />
     <Compile Include="CommandRunner.cs" />
+    <Compile Include="NCommander.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\AttributeUtil.cs" />
     <Compile Include="Utilities\DataCastUtil.cs" />
