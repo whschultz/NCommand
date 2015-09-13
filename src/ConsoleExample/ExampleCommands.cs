@@ -5,11 +5,11 @@ using Tectil.NCommand.Contract;
 
 namespace Tectil.NCommand.ConsoleExample
 {
+    /// <summary>
+    /// Example commands.
+    /// </summary>
     public class ExampleCommands
     {
-        public ExampleCommands()
-        {
-        }
 
         /// <summary>
         /// Dummy search command.

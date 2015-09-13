@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Reflection;
 
 namespace Tectil.NCommand.Contract
 {
+    /// <summary>
+    /// Command info.
+    /// </summary>
     public class CommandInfo
     {
         /// <summary>

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Tectil.NCommand.Contract
 {
+    /// <summary>
+    /// Command lookup interface.
+    /// </summary>
     public interface ICommandLookup
     {
         /// <summary>

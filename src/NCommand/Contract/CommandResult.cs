@@ -2,6 +2,9 @@
 
 namespace Tectil.NCommand.Contract
 {
+    /// <summary>
+    /// Command result.
+    /// </summary>
     public class CommandResult
     {
         /// <summary>

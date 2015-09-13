@@ -2,9 +2,17 @@
 
 namespace Tectil.NCommand.Utilities
 {
+    /// <summary>
+    /// Casting utility.
+    /// </summary>
     internal static class DataCastUtil
     {
-
+        /// <summary>
+        /// Converts strings to specified type.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="type">The type.</param>
+        /// <returns></returns>
         public static object Convert(string value, Type type)
         {
             if (type == typeof(Int16))

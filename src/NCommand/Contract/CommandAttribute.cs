@@ -1,9 +1,17 @@
 ﻿using System;
 namespace Tectil.NCommand.Contract
 {
+    /// <summary>
+    /// Command attribute.
+    /// </summary>
     public class CommandAttribute
         : Attribute
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandAttribute"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="description">The description.</param>
         public CommandAttribute(string name = null, string description = null)
         {
             Name = name;

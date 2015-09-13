@@ -4,6 +4,9 @@ using System.Text.RegularExpressions;
 
 namespace Tectil.NCommand.Utilities
 {
+    /// <summary>
+    /// String command utility.
+    /// </summary>
     internal static class StringCommandUtil
     {
 

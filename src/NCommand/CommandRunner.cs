@@ -6,7 +6,7 @@ using Tectil.NCommand.Contract;
 namespace Tectil.NCommand
 {
     /// <summary>
-    /// Entrypount to run a command.
+    /// Entrypoint to run a command.
     /// </summary>
     public class CommandRunner
         : ICommandRunner

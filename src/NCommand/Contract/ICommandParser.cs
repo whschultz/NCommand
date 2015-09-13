@@ -2,6 +2,9 @@
 
 namespace Tectil.NCommand.Contract
 {
+    /// <summary>
+    /// Command parser interface.
+    /// </summary>
     public interface ICommandParser
     {
         /// <summary>
@@ -10,6 +13,5 @@ namespace Tectil.NCommand.Contract
         /// <param name="command"></param>
         /// <returns></returns>
         IEnumerable<KeyValuePair<string, object>> Parse(string command);
-
     }
 }

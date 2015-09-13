@@ -2,8 +2,14 @@
 
 namespace Tectil.NCommand.Contract
 {
+    /// <summary>
+    /// Mapping result
+    /// </summary>
     public class MappingResult
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MappingResult"/> class.
+        /// </summary>
         public MappingResult()
         {
             ResultArguments = new List<object>();

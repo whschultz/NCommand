@@ -2,6 +2,9 @@
 
 namespace Tectil.NCommand.Contract
 {
+    /// <summary>
+    /// Command mapper interface.
+    /// </summary>
     public interface ICommandMapper
     {
         /// <summary>

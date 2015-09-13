@@ -2,6 +2,9 @@
 
 namespace Tectil.NCommand.Contract
 {
+    /// <summary>
+    /// Argument info
+    /// </summary>
     public class ArgumentInfo
     {
         /// <summary>

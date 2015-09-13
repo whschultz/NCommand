@@ -6,6 +6,9 @@ using System.Text.RegularExpressions;
 
 namespace Tectil.NCommand.Utilities
 {
+    /// <summary>
+    /// Utility functions for attributes.
+    /// </summary>
     internal static class AttributeUtil
     {
         /// <summary>
