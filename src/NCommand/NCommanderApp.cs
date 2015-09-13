@@ -31,8 +31,7 @@ namespace Tectil.NCommand
         /// The configuration.
         /// </value>
         public CommandConfiguration Configuration { get; set; }
-
-
+        
         /// <summary>
         /// Autodetects assemblies containing commands. All assemblies will be reflected.
         /// </summary>
@@ -42,7 +41,14 @@ namespace Tectil.NCommand
             var loadedPaths = loadedAssemblies.Select(a => a.Location).ToArray();
             var referencedPaths = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll");
             var toLoad = referencedPaths.Where(r => !loadedPaths.Contains(r, StringComparer.InvariantCultureIgnoreCase)).ToList();
-            toLoad.ForEach(path => loadedAssemblies.Add(AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(path))));
+            toLoad.ForEach(path =>
+            {
+                try
+                {
+                    loadedAssemblies.Add(AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(path)));
+                }
+                catch { } // todo: log
+            });
             Configuration.CommandAssemblies.AddRange(AppDomain.CurrentDomain.GetAssemblies().Where(x => !Configuration.CommandAssemblies.Contains(x)));
         }
 
