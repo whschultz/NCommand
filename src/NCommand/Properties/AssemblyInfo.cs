@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("NCommand")]
-[assembly: AssemblyDescription("NConsole is a .NET library to parse command line arguments and map them to commands.")]
+[assembly: AssemblyDescription("NCommand is a .NET library to parse command line arguments and map them to commands.")]
 [assembly: AssemblyCompany("Tectil GmbH")]
 [assembly: AssemblyProduct("NCommand")]
 [assembly: AssemblyCopyright("Copyright © Etienne Ribeiro, 2015")]
