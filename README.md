@@ -8,6 +8,16 @@ NCommand consists of two packages:
 - [NuGet package NCommand.Console](https://www.nuget.org/packages/NCommand.Console/) is a frontend package for NCommand. NCommand enabled libraries can easily be exposed to the console.
 - More frontend packages are under construction.
 
+Modes:
+
+Execution / Interactive multicommand mode: If command returns success or exception, command runs in execution mode and returns. Otherwise interactive mode is started in multicommand mode. 
+
+    // Executes and exits after completion:
+	MyCommands.exe copy /sourcePath:[path] /destinationPath:[path]
+    
+	// Change to interactive multicommand mode:
+	MyCommands.exe copy /sourcePath:[path]
+
 Features: 
 
 - Interactive mode if parameters are missing.
