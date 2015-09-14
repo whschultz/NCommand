@@ -10,7 +10,7 @@
     <tags>Console, Task, Command</tags>
     <title>NCommand</title>
     <projectUrl>https://github.com/tectil/NCommand</projectUrl>
-    <!-- <licenseUrl></licenseUrl>-->
+    <licenseUrl>https://github.com/tectil/NCommand/blob/master/LICENSE.md</licenseUrl>
   </metadata>
   <files>
     <file src="bin\Release\NCommand.dll" target="lib\net45" />
