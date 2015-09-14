@@ -9,8 +9,9 @@
     <copyright>$author$</copyright>
     <tags>Console, Task, Command</tags>
     <title>NCommand.Console</title>
+    <iconUrl>https://github.com/tectil/NCommand/blob/master/Colors.png</iconUrl>
     <projectUrl>https://github.com/tectil/NCommand</projectUrl>
-    <!-- <licenseUrl></licenseUrl>-->
+    <licenseUrl>https://github.com/tectil/NCommand/blob/master/LICENSE.md</licenseUrl>
   </metadata>
   <files>
     <file src="bin\Release\NCommand.Console.dll" target="lib\net45" />
