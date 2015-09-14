@@ -31,7 +31,7 @@ namespace Tectil.NCommand
         /// <param name="args"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        public static bool RunConsole(this NCommanderApp commander, string[] args, Mode mode = Mode.Interactive)
+        public static bool RunConsole(this NCommanderApp commander, string[] args)
         {
             // Context
             IO = new IoManager();
@@ -44,16 +44,13 @@ namespace Tectil.NCommand
             IO.WriteLine("");
 
             // Mode: Execute
-            if (mode == Mode.Execute)
+            if (result.State == ResultState.Success)
             {
-                if (result.State == ResultState.Success)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
+            }
+            if (result.State == ResultState.ErrorWhileExecuting)
+            {
+                return false;
             }
 
             // Mode: Interactive

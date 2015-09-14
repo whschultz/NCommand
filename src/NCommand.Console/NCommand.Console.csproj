@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NCommanderConsoleApp.cs" />
-    <Compile Include="Contract\Mode.cs" />
     <Compile Include="IoManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
