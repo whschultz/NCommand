@@ -43,8 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NCommanderConsoleApp.cs" />
-    <Compile Include="IoManager.cs" />
+    <Compile Include="ConsoleUtility.cs" />
+    <Compile Include="Contract\ExecutionContext.cs" />
+    <Compile Include="Contract\IExecutionFlowFactory.cs" />
+    <Compile Include="Contract\IExecutionFlow.cs" />
+    <Compile Include="ExecutionFlows\Internals\ExecutionFlowFactory.cs" />
+    <Compile Include="ExecutionFlows\Internals\ExecutionFlowBase.cs" />
+    <Compile Include="ExecutionFlows\RunExecute.cs" />
+    <Compile Include="ExecutionFlows\RunExecuteSilent.cs" />
+    <Compile Include="ExecutionFlows\RunInteractive.cs" />
+    <Compile Include="NCommandsConsole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +64,7 @@
       <Name>NCommand</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

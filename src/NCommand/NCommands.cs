@@ -3,14 +3,14 @@
     /// <summary>
     /// Entry point for NCommand clients (eg. NCommand.Console)
     /// </summary>
-    public static class NCommander
+    public class NCommands
     {
         /// <summary>
-        /// Initializes the <see cref="NCommander"/> class.
+        /// Initializes the <see cref="NCommands"/> class.
         /// </summary>
-        static NCommander()
+        public NCommands()
         {
-            App = new NCommanderApp();
+            Context = new NCommanderContext();
         }
 
         /// <summary>
@@ -19,6 +19,6 @@
         /// <value>
         /// The application.
         /// </value>
-        public static NCommanderApp App { get; }
+        public NCommanderContext Context { get; }
     }
 }

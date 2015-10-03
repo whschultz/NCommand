@@ -1,31 +1,31 @@
 ﻿using System;
-using System.IO;
 using System.Text;
 
 namespace Tectil.NCommand
 {
     /// <summary>
-    /// Input and output to console. All commands are buffered and need to be flushed to be displayed.
+    /// Utility functions for console
     /// </summary>
-    public sealed class IoManager
+    public class ConsoleUtility
     {
-
-        #region ctx
-
-        private StringWriter _consoleOut;
-        private readonly TextWriter _consoleOutDefault;
-
+        #region Static
         /// <summary>
-        /// Initializes a new instance of the <see cref="IoManager"/> class.
+        /// Static instance.
         /// </summary>
-        public IoManager()
+        /// <value>
+        /// The io.
+        /// </value>
+        public static ConsoleUtility Instance
         {
-            _consoleOutDefault = Console.Out;
-            ClearBuffer(); // Clear cache
+            get
+            {
+                _instance = _instance ?? new ConsoleUtility();
+                return _instance;
+            }
         }
-
+        private static ConsoleUtility _instance;
         #endregion
-        
+
         /// <summary>
         /// Write line.
         /// </summary>
@@ -49,12 +49,11 @@ namespace Tectil.NCommand
         }
 
         /// <summary>
-        /// Read line.
+        /// Read line with trigger for ESC.
         /// </summary>
         public string ReadLine(Action fEscPressed = null)
         {
             Write("> ");
-            Flush(); // Flush before read.
             var inp = ReadLineWithEsc();
             if (inp.Item2 == ConsoleKey.Escape && fEscPressed != null)
             {
@@ -63,31 +62,34 @@ namespace Tectil.NCommand
             Console.WriteLine();
             return inp.Item1;
         }
-        
+
         /// <summary>
-        /// Flush
+        /// Clears the last line.
         /// </summary>
-        public void Flush()
+        public void ClearLastLine()
         {
-            Console.SetOut(_consoleOutDefault);
-            Console.Write(_consoleOut.ToString());
-            Console.SetOut(_consoleOut);
-            ClearBuffer(); // Clear cache
+            if (Console.CursorTop == 0) return;
+            ClearLine(Console.CursorTop - 1, true);
         }
 
         /// <summary>
-        /// Clear
+        /// Clears the specified line.
         /// </summary>
-        public void ClearBuffer()
+        /// <param name="top">The top.</param>
+        /// <param name="moveToClearedLine">if set to <c>true</c> [move to cleared line].</param>
+        public void ClearLine(int top, bool moveToClearedLine = false)
         {
-            _consoleOut = new StringWriter();
-            Console.SetOut(_consoleOut);
+            if (top < 0) return;
+            var topLast = Console.CursorTop;
+            Console.SetCursorPosition(0, top);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, moveToClearedLine ? top : topLast);
         }
 
         /// <summary>
         /// Clears the window.
         /// </summary>
-        public void ClearWindow()
+        public void Clear()
         {
             Console.Clear();
         }
@@ -104,7 +106,6 @@ namespace Tectil.NCommand
                 if (lastChar.Key == ConsoleKey.Escape) // Exit
                 {
                     Console.Write(Environment.NewLine);
-                    Flush();
                     break;
                 }
                 if (lastChar.Key == ConsoleKey.Backspace)
@@ -122,9 +123,8 @@ namespace Tectil.NCommand
                     Console.Write(lastChar.KeyChar);
                     txt.Append(lastChar.KeyChar);
                 }
-                Flush();
             } while (lastChar.Key != ConsoleKey.Enter); // Exit
-            return new Tuple<string, ConsoleKey>(txt.ToString(), lastChar.Key); 
+            return new Tuple<string, ConsoleKey>(txt.ToString(), lastChar.Key);
         }
 
         #endregion

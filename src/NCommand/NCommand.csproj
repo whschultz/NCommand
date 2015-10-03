@@ -46,7 +46,7 @@
     <Compile Include="CommandConfiguration.cs" />
     <Compile Include="Contract\MethodeAttribute.cs" />
     <Compile Include="Contract\MethodResult.cs" />
-    <Compile Include="NCommanderApp.cs" />
+    <Compile Include="NCommanderContext.cs" />
     <Compile Include="Contract\ArgumentInfo.cs" />
     <Compile Include="Contract\CommandAttribute.cs" />
     <Compile Include="Contract\CommandInfo.cs" />
@@ -62,7 +62,7 @@
     <Compile Include="CommandParser.cs" />
     <Compile Include="Contract\ICommandParser.cs" />
     <Compile Include="CommandRunner.cs" />
-    <Compile Include="NCommander.cs" />
+    <Compile Include="NCommands.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\AttributeUtil.cs" />
     <Compile Include="Utilities\DataCastUtil.cs" />

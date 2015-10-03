@@ -73,7 +73,6 @@ namespace Tectil.NCommand
             List<KeyValuePair<string, object>> args = _parser.Parse(commandline).ToList();
             if (!args.Any())
             {
-
                 // Parsing error
                 result.State = ResultState.ParsingError;
                 return new Tuple<CommandResult, List<object>, CommandInfo>(result, null, null);

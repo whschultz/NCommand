@@ -11,11 +11,9 @@
         /// <param name="args">The arguments.</param>
         static void Main(string[] args)
         {
-            NCommander.App.AutodetectCommandAssemblies(); // Loads all assemblies in bin folder and checks for CommandAttribute
-            NCommander.App.RunConsole(args);
-#if DEBUG
-            NCommanderConsoleApp.IO.ReadLine(null);
-#endif
+            NCommands commands = new NCommands();
+            commands.Context.AutodetectCommandAssemblies(); // Loads all assemblies in bin folder and checks for CommandAttribute
+            commands.RunConsole(args);
         }
     }
 }

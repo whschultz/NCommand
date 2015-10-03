@@ -8,15 +8,15 @@ namespace Tectil.NCommand
     /// <summary>
     /// Application instance. Extensions available inside client packages.
     /// </summary>
-    public class NCommanderApp
+    public class NCommanderContext
     {
 
         #region ctx
         
         /// <summary>
-        /// Initializes a new instance of the <see cref="NCommanderApp"/> class.
+        /// Initializes a new instance of the <see cref="NCommanderContext"/> class.
         /// </summary>
-        public NCommanderApp()
+        public NCommanderContext()
         {
             Configuration = new CommandConfiguration();
             AddEntryAssembly(); // default value

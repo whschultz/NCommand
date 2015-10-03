@@ -47,19 +47,6 @@ namespace Tectil.NCommand.ConsoleExample
         }
 
         /// <summary>
-        /// Throw exception command.
-        /// </summary>
-        /// <example>
-        /// ConsoleExample.exe HelloWorld /myname:Bill
-        /// </example>
-        /// <returns></returns>
-        [Command()]
-        public void HelloWorld(string myName)
-        {
-            NCommanderConsoleApp.IO.WriteLine("Hello World. My name is {0}.", myName);
-        }
-
-        /// <summary>
         /// List of fruits.
         /// </summary>
         /// <returns></returns>
