@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using Tectil.NCommand.Contract;
 
 namespace Tectil.NCommand.Utilities
 {
@@ -17,7 +18,7 @@ namespace Tectil.NCommand.Utilities
         /// <typeparam name="T"></typeparam>
         /// <param name="assemblyNameRegex"></param>
         /// <returns></returns>
-        public static IEnumerable<Tuple<MethodInfo, T>> GetMethodByAttribute<T>(string assemblyNameRegex)
+        public static MethodResult<T> GetMethodByAttribute<T>(string assemblyNameRegex)
             where T : class
         {
             return GetMethodByAttribute<T>( AppDomain.CurrentDomain.GetAssemblies().Where(x => Regex.Match(x.FullName, assemblyNameRegex).Success ) );
@@ -26,17 +27,33 @@ namespace Tectil.NCommand.Utilities
         /// <summary>
         /// Get methodes by attribute.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">Attribute</typeparam>
         /// <param name="assemblies"></param>
         /// <returns></returns>
-        public static IEnumerable<Tuple<MethodInfo, T>> GetMethodByAttribute<T>(IEnumerable<Assembly> assemblies)
-            where T: class 
+        public static MethodResult<T> GetMethodByAttribute<T>(IEnumerable<Assembly> assemblies)
+            where T: class
         {
-            var methods = assemblies.SelectMany(assembly => assembly.GetTypes()
-                      .SelectMany(t => t.GetMethods())
-                      .Where(m => m.GetCustomAttributes(typeof(T), false).Length > 0)
-                      ).Select(m => new Tuple<MethodInfo, T> (m, m.GetCustomAttributes(typeof(T), false).FirstOrDefault() as T) ).ToList();
-            return methods;
+            var exceptions = new List<Exception>();
+            var methods = assemblies.SelectMany(assembly =>
+            {
+                try
+                {
+                    var methodes = assembly.GetTypes()
+                        .SelectMany(t => t.GetMethods())
+                        .Where(m => m.GetCustomAttributes(typeof(T), false).Length > 0);
+                    return methodes;
+                }
+                catch (ReflectionTypeLoadException ex)
+                {
+                    exceptions.AddRange(ex.LoaderExceptions);
+                    return new List<MethodInfo>();
+                }
+            }).Select(m => new MethodeAttribute<T>(){ MethodInfo = m, Attribute = m.GetCustomAttributes(typeof(T), false).FirstOrDefault() as T } ).ToList();
+            return new MethodResult<T>()
+            {
+                Methodes = methods,
+                Exceptions = exceptions
+            };
         }
 
         /// <summary>

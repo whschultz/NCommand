@@ -12,24 +12,22 @@ namespace Tectil.NCommand
         : ICommandRunner
     {
 
-        #region ctx
-
+        #region Private
         private readonly ICommandParser _parser;
         private readonly ICommandLookup _lookup;
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandRunner"/> class.
         /// </summary>
         /// <param name="parser">The parser.</param>
         /// <param name="lookup">The lookup.</param>
-        /// <param name="configuration"></param>
         public CommandRunner(ICommandParser parser, ICommandLookup lookup)
         {
             _parser = parser;
             _lookup = lookup;
         }
 
-        #endregion
         
         /// <summary>
         /// Validate command (parse, find and compare arguments)

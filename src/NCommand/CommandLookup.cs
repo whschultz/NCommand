@@ -79,18 +79,18 @@ namespace Tectil.NCommand
             if (_commands == null)
             {
                 var methods = AttributeUtil.GetMethodByAttribute<CommandAttribute>(_assemblies);
-                _commands = methods.Select(x => new Tuple<CommandInfo, MethodInfo, Type>( new CommandInfo()
+                _commands = methods.Methodes.Select(x => new Tuple<CommandInfo, MethodInfo, Type>( new CommandInfo()
                 {
-                    CommandName = x?.Item2?.Name?.ToLower().Trim() ?? x.Item1?.Name?.ToLower().Trim(),
-                    Description = x?.Item2?.Description,
-                    Arguments = AttributeUtil.GetParametersAndAttributes<ArgumentAttribute>(x.Item1).Select(y => new ArgumentInfo()
+                    CommandName = x?.Attribute?.Name?.ToLower().Trim() ?? x.MethodInfo?.Name?.ToLower().Trim(),
+                    Description = x?.Attribute?.Description,
+                    Arguments = AttributeUtil.GetParametersAndAttributes<ArgumentAttribute>(x.MethodInfo).Select(y => new ArgumentInfo()
                     {
                         Name = y?.Item2?.Name?.ToLower().Trim() ?? y?.Item1?.Name?.ToLower().Trim(),
                         Description = y?.Item2?.Description,
                         DefaultValue = y?.Item2?.DefaultValue,
                         Type = y?.Item3
                     }).ToList()
-                }, x.Item1, x?.Item1?.DeclaringType)).ToList();
+                }, x.MethodInfo, x?.MethodInfo?.DeclaringType)).ToList();
             }
             //methods.First().Item1.DeclaringType
             return _commands;
