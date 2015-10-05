@@ -60,7 +60,8 @@ Add following code to your console main:
 
     static void Main(string[] args)
     {
-        NCommander.App.RunConsole(args);
+    	NCommands commands = new NCommands();
+        commands.RunConsole(args);
     }
 
 The command `Copy` can be executed with following command line calls: 
