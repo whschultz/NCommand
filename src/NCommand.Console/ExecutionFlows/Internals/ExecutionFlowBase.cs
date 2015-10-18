@@ -89,6 +89,9 @@ namespace Tectil.NCommand.ExecutionFlows.Internals
                     context.Command.State = ResultState.PromptForCommand;
                     break;
 
+                case ResultState.Canceled:
+                    return false;
+
                 default:
                     throw new Exception(@"Error in NCommands. Unknown state: {currentState}");
             }

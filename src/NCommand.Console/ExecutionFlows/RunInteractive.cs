@@ -57,9 +57,9 @@ namespace Tectil.NCommand.ExecutionFlows
                     int ii = 1;
                     context.IO.WriteLine("Commands available:");
                     context.IO.WriteLine("");
-                    context.IO.WriteLine("/help   Command overview (this view)");
-                    context.IO.WriteLine("/mode   silent - No prompting");
-                    context.IO.WriteLine("[ESC]   Cancel command");
+                    context.IO.WriteLine("help                     Command overview (this view)");
+                    context.IO.WriteLine("/mode                    silent - No prompting");
+                    context.IO.WriteLine("[ESC]|exit|quit|cancel   Cancel command");
                     context.IO.WriteLine("");
                     context.Commands?.ForEach(cmd =>
                     {

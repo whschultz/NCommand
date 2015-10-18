@@ -27,7 +27,6 @@ namespace Tectil.NCommand
             _parser = parser;
             _lookup = lookup;
         }
-
         
         /// <summary>
         /// Validate command (parse, find and compare arguments)
@@ -53,9 +52,20 @@ namespace Tectil.NCommand
             // Run
             if (result.Item1.State == ResultState.Success)
             {
-                var res = _lookup.Run(result.Item3, result.Item2.ToArray());
-                result.Item1.Result = res.Item2;
-                result.Item1.State = res.Item1 ? ResultState.Success : ResultState.ErrorWhileExecuting;
+                var method = _lookup.GetMethode(result.Item3);
+                if (method != null)
+                {
+                    try
+                    {
+                        var obj = Activator.CreateInstance(method.Item3, null);
+                        var methodResult = method.Item2.Invoke(obj, result.Item2.ToArray());
+                        result.Item1.Result = methodResult;
+                        result.Item1.State = ResultState.Success;
+                        return result.Item1;
+                    }
+                    catch (Exception) { } // todo: log
+                }
+                result.Item1.State = ResultState.ErrorWhileExecuting;
             }
 
             // Result
@@ -87,6 +97,11 @@ namespace Tectil.NCommand
                     result.State = ResultState.ShowHelpOverview;
                     result.CommandInfo = new CommandInfo() { CommandName = "ncommandsystem.help" };
                     result.Result = _lookup.Commands;
+                    return new Tuple<CommandResult, List<object>, CommandInfo>(result, null, null);
+                }
+                if (args.Skip(1).FirstOrDefault().Key?.ToLower() == "exit" || args.Skip(1).FirstOrDefault().Key?.ToLower() == "quit" || args.Skip(1).FirstOrDefault().Key?.ToLower() == "cancel")
+                {
+                    result.State = ResultState.Canceled;
                     return new Tuple<CommandResult, List<object>, CommandInfo>(result, null, null);
                 }
             }

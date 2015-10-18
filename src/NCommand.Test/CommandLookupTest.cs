@@ -14,8 +14,8 @@ namespace Tectil.NCommand.Test
             configuration.CommandAssemblies.Add(Assembly.GetExecutingAssembly());
             var target = new CommandLookup(configuration);
             var commandRepository = target.Commands;
-            target.Run(commandRepository.First(), new object[]{ "", 4, "de" });
-            Assert.NotNull(commandRepository);
+            //target.Run(commandRepository.First(), new object[]{ "", 4, "de" });
+            //Assert.NotNull(commandRepository);
         }
 
     }

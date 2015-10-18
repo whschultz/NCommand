@@ -48,28 +48,17 @@ namespace Tectil.NCommand
         /// <returns></returns>
         public CommandInfo GetCommand(string name)
         {
-            return GetCommands().FirstOrDefault(x => x.Item1.CommandName == (name ?? "").ToLower().Trim())?.Item1;
+            return GetCommands().FirstOrDefault(x => x.Item1.CommandName.ToLower() == (name ?? "").ToLower().Trim())?.Item1;
         }
 
         /// <summary>
-        /// Run command.
+        /// Gets the methode.
         /// </summary>
-        /// <param name="command"></param>
-        /// <param name="arguments"></param>
-        public Tuple<bool, object> Run(CommandInfo command, object[] arguments)
+        /// <param name="command">The command.</param>
+        /// <returns></returns>
+        public Tuple<CommandInfo, MethodInfo, Type> GetMethode(CommandInfo command)
         {
-            var method = GetCommands().FirstOrDefault(x => x.Item1 == command);
-            if (method != null)
-            {
-                try
-                {
-                    var obj = Activator.CreateInstance(method.Item3, null);
-                    var result = method.Item2.Invoke(obj, arguments);
-                    return new Tuple<bool, object>(true, result);
-                }
-                catch (Exception) { } // todo: log
-            }
-            return new Tuple<bool, object>(false, null);
+            return GetCommands().FirstOrDefault(x => x.Item1 == command);
         }
 
         #region Private
@@ -81,11 +70,11 @@ namespace Tectil.NCommand
                 var methods = AttributeUtil.GetMethodByAttribute<CommandAttribute>(_assemblies);
                 _commands = methods.Methodes.Select(x => new Tuple<CommandInfo, MethodInfo, Type>( new CommandInfo()
                 {
-                    CommandName = x?.Attribute?.Name?.ToLower().Trim() ?? x.MethodInfo?.Name?.ToLower().Trim(),
+                    CommandName = x?.Attribute?.Name?.Trim() ?? x.MethodInfo?.Name?.Trim(),
                     Description = x?.Attribute?.Description,
                     Arguments = AttributeUtil.GetParametersAndAttributes<ArgumentAttribute>(x.MethodInfo).Select(y => new ArgumentInfo()
                     {
-                        Name = y?.Item2?.Name?.ToLower().Trim() ?? y?.Item1?.Name?.ToLower().Trim(),
+                        Name = y?.Item2?.Name?.Trim() ?? y?.Item1?.Name?.Trim(),
                         Description = y?.Item2?.Description,
                         DefaultValue = y?.Item2?.DefaultValue,
                         Type = y?.Item3

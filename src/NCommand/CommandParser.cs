@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Tectil.NCommand.Contract;
 using Tectil.NCommand.Utilities;
@@ -11,6 +12,8 @@ namespace Tectil.NCommand
     public class CommandParser
         : ICommandParser
     {
+        private readonly List<string> _systemCommands = new List<string>() { "help", "exit", "quit", "cancel" }; // mode
+
         /// <summary>
         /// Default implementation. 
         /// Command format is "commandname /parameter:valueWithSpaceAllowed /parameter:valueWithSpaceAllowed"
@@ -25,9 +28,13 @@ namespace Tectil.NCommand
         public IEnumerable<KeyValuePair<string, object>> Parse(string command)
         {
             // Helppage as default:
-            if (string.IsNullOrWhiteSpace(command) || command.Trim().ToLower().StartsWith("/help"))
+            if (string.IsNullOrWhiteSpace(command))
             {
                 command = "ncommandsystem /help:true";
+            }
+            if (_systemCommands.Any(x => x == command?.Trim().Trim('/').ToLower()))
+            {
+                command = $"ncommandsystem /{command?.Trim().ToLower()}:true";
             }
 
             // Detect flags (eg ' /enable' -> ' /enable:true')

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Tectil.NCommand.Contract
 {
@@ -22,11 +23,10 @@ namespace Tectil.NCommand.Contract
         CommandInfo GetCommand(string name);
 
         /// <summary>
-        /// Run command.
+        /// Gets the methode.
         /// </summary>
-        /// <param name="command"></param>
-        /// <param name="arguments"></param>
+        /// <param name="command">The command.</param>
         /// <returns></returns>
-        Tuple<bool, object> Run(CommandInfo command, object[] arguments);
+        Tuple<CommandInfo, MethodInfo, Type> GetMethode(CommandInfo command);
     }
 }
