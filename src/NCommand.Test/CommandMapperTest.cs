@@ -8,14 +8,18 @@ namespace Tectil.NCommand.Test
     public class CommandMapperTest
     {
         [Theory]
-        [InlineData("dummysearch /s:weather cupertino", ResultState.Success, null)]
-        [InlineData("dummysearch /s:weather cupertino /take:11 /language:de", ResultState.Success, null)]
-        [InlineData("dummysearch  /take:11 /language:de /s:weather Cupertino", ResultState.Success, "weather Cupertino")] // check sort order
-        [InlineData("dummysearch /take:10 /language:de", ResultState.MissingArguments, null)] // check required arguments
-        public void MappingTest(string commandLineArguments, ResultState expectedResult, string firstArgumentValue)
+        [InlineData("dummysearch /s:weather cupertino", ResultState.Success, null, ParserNotation.Windows)]
+        [InlineData("dummysearch /s:weather cupertino /take:11 /language:de", ResultState.Success, null, ParserNotation.Windows)]
+        [InlineData("dummysearch  /take:11 /language:de /s:weather Cupertino", ResultState.Success, "weather Cupertino", ParserNotation.Windows)] // check sort order
+        [InlineData("dummysearch /take:10 /language:de", ResultState.MissingArguments, null, ParserNotation.Windows)] // check required arguments
+        [InlineData("dummysearch -s=weather cupertino", ResultState.Success, null, ParserNotation.Unix)]
+        [InlineData("dummysearch -s=weather cupertino -take=11 -language=de", ResultState.Success, null, ParserNotation.Unix)]
+        [InlineData("dummysearch  -take=11 -language=de -s=weather Cupertino", ResultState.Success, "weather Cupertino", ParserNotation.Unix)] // check sort order
+        [InlineData("dummysearch -take=10 -language=de", ResultState.MissingArguments, null, ParserNotation.Unix)] // check required arguments
+        public void MappingTest(string commandLineArguments, ResultState expectedResult, string firstArgumentValue, ParserNotation notation)
         {
             // Setup
-            var parser = new CommandParser();
+            var parser = new CommandParser(notation);
             var args = parser.Parse(commandLineArguments);
             var configuration = new CommandConfiguration();
             configuration.CommandAssemblies.Add(Assembly.GetExecutingAssembly());

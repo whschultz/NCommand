@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
+using Tectil.NCommand.Contract;
 using Xunit;
 
 namespace Tectil.NCommand.Test
@@ -8,19 +9,25 @@ namespace Tectil.NCommand.Test
     {
         [Theory]
         // Should parse
-        [InlineData(@"websearch /s:weather /flagon", true)]
-        [InlineData(@"websearch /s:weather", true)]
-        [InlineData(@"websearch /s:weather cupertino /take:10 /language:de", true)]
-        [InlineData(@"websearch /s:", true)]
-        [InlineData(@"", true)]
-        [InlineData(@"getpath /path:$DummyApp/CopyTest/SourceA", true)]
+        [InlineData(@"websearch /s:weather /flagon", true, ParserNotation.Windows)]
+        [InlineData(@"websearch /s:weather", true, ParserNotation.Windows)]
+        [InlineData(@"websearch /s:weather cupertino /take:10 /language:de", true, ParserNotation.Windows)]
+        [InlineData(@"websearch /s:", true, ParserNotation.Windows)]
+        [InlineData(@"", true, ParserNotation.Windows)]
+        [InlineData(@"getpath /path:$DummyApp/CopyTest/SourceA", true, ParserNotation.Windows)]
+        [InlineData(@"websearch -s=weather -flagon", true, ParserNotation.Unix)]
+        [InlineData(@"websearch -s=weather", true, ParserNotation.Unix)]
+        [InlineData(@"websearch -s=weather cupertino -take=10 -language=de", true, ParserNotation.Unix)]
+        [InlineData(@"websearch -s=", true, ParserNotation.Unix)]
+        [InlineData(@"", true, ParserNotation.Unix)]
+        [InlineData(@"getpath -path=$DummyApp-CopyTest-SourceA", true, ParserNotation.Unix)]
         // Should not parse
-        [InlineData(@"/s:weather cupertino /take:10 /language:de", false)]
-        [InlineData(@"aa dsf /s:weather", false)]
-        [InlineData(@"dsf /s d:weather", false)]
-        public void ParsingTest(string command, bool resultShouldParse)
+        [InlineData(@"/s:weather cupertino /take:10 /language:de", false, ParserNotation.Windows)]
+        [InlineData(@"aa dsf /s:weather", false, ParserNotation.Windows)]
+        [InlineData(@"dsf /s d:weather", false, ParserNotation.Windows)]
+        public void ParsingTest(string command, bool resultShouldParse, ParserNotation notation)
         {
-            var target = new CommandParser();
+            var target = new CommandParser(notation);
             var commandTree = target.Parse(command);
 
             // Assert

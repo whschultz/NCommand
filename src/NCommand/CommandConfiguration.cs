@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
+using Tectil.NCommand.Contract;
 
 namespace Tectil.NCommand
 {
@@ -25,6 +26,14 @@ namespace Tectil.NCommand
         public List<Assembly> CommandAssemblies { get; set; }
 
         /// <summary>
+        /// Gets or sets the notation.
+        /// </summary>
+        /// <value>
+        /// The notation.
+        /// </value>
+        public ParserNotation Notation { get; set; } = ParserNotation.Windows;
+
+        /// <summary>
         /// Gets or sets a value indicating whether [display exceptions].
         /// </summary>
         /// <value>
@@ -33,10 +42,10 @@ namespace Tectil.NCommand
         public bool DisplayExceptionDetails { get; set; } = true;
 
         /// <summary>
-        /// Gets or sets a value indicating whether {CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}[trace exceptions].
+        /// Gets or sets a value indicating whether [trace exceptions].
         /// </summary>
         /// <value>
-        /// {D255958A-8513-4226-94B9-080D98F904A1}  <c>true</c> if [trace exceptions]; otherwise, <c>false</c>.
+        ///   <c>true</c> if [trace exceptions]; otherwise, <c>false</c>.
         /// </value>
         public bool TraceExceptions { get; set; } = true;
     }

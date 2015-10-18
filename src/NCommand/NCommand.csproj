@@ -46,6 +46,7 @@
     <Compile Include="CommandConfiguration.cs" />
     <Compile Include="Contract\MethodeAttribute.cs" />
     <Compile Include="Contract\MethodResult.cs" />
+    <Compile Include="Contract\ParserNotation.cs" />
     <Compile Include="NCommanderContext.cs" />
     <Compile Include="Contract\ArgumentInfo.cs" />
     <Compile Include="Contract\CommandAttribute.cs" />

@@ -31,7 +31,7 @@ namespace Tectil.NCommand
         {
             // Run
             var arguments = args.ToList();
-            var runner = new CommandRunner(new CommandParser(), new CommandLookup(commands.Context.Configuration));
+            var runner = new CommandRunner(new CommandParser(commands.Context.Configuration.Notation), new CommandLookup(commands.Context.Configuration));
             var result = runner.Run(string.Join(" ", arguments));
 
             // Execution flow

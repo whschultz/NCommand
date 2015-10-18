@@ -12,7 +12,20 @@ namespace Tectil.NCommand
     public class CommandParser
         : ICommandParser
     {
+
+        #region Private
         private readonly List<string> _systemCommands = new List<string>() { "help", "exit", "quit", "cancel" }; // mode
+        private readonly ParserNotation _notation;
+        #endregion
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandParser"/> class.
+        /// </summary>
+        /// <param name="notation">The notation.</param>
+        public CommandParser(ParserNotation notation)
+        {
+            _notation = notation;
+        }
 
         /// <summary>
         /// Default implementation. 
@@ -27,28 +40,31 @@ namespace Tectil.NCommand
         /// <returns></returns>
         public IEnumerable<KeyValuePair<string, object>> Parse(string command)
         {
+            var seperator1 = _notation == ParserNotation.Windows ? '/' : '-';
+            var seperator2 = _notation == ParserNotation.Windows ? ':' : '=';
+
             // Helppage as default:
             if (string.IsNullOrWhiteSpace(command))
             {
-                command = "ncommandsystem /help:true";
+                command = $"ncommandsystem {seperator1}help{seperator2}true";
             }
-            if (_systemCommands.Any(x => x == command?.Trim().Trim('/').ToLower()))
+            if (_systemCommands.Any(x => x == command?.Trim().Trim(seperator1).ToLower()))
             {
-                command = $"ncommandsystem /{command?.Trim().ToLower()}:true";
+                command = $"ncommandsystem {seperator1}{command?.Trim().ToLower()}{seperator2}true";
             }
 
             // Detect flags (eg ' /enable' -> ' /enable:true')
-            command = command + " /";
+            command = command + $" {seperator1}";
             while (true)
             {
-                var result = new Regex(" (/[a-z,A-Z]+)[ ]+/", RegexOptions.IgnoreCase).Match(command); // , command + ":true /"
+                var result = new Regex($" ({seperator1}[a-z,A-Z]+)[ ]+{seperator1}", RegexOptions.IgnoreCase).Match(command); // , command + ":true /"
                 if (!result.Success) break;
-                command = command.Replace(result.ToString(), result.ToString().TrimEnd('/').TrimEnd() + ":true /");
+                command = command.Replace(result.ToString(), result.ToString().TrimEnd(seperator1).TrimEnd() + "{seperator2}true {seperator1}");
             }
-            command = command.TrimEnd('/').TrimEnd();
+            command = command.TrimEnd(seperator1).TrimEnd();
 
             // Parse command
-            return StringCommandUtil.ParseCommand(command, "^[a-z,A-Z]+$", "(/[a-z,A-Z]+:)", new [] { '/', ':' }, true);
+            return StringCommandUtil.ParseCommand(command, "^[a-z,A-Z]+$", $"({seperator1}[a-z,A-Z]+{seperator2})", new [] { seperator1, seperator2 }, true);
         }
     }
 }
