@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Tectil.NCommand.Contract;
 
@@ -63,9 +64,13 @@ namespace Tectil.NCommand
                         result.Item1.State = ResultState.Success;
                         return result.Item1;
                     }
-                    catch (Exception) { } // todo: log
+                    catch (Exception ex)
+                    {
+                        result.Item1.State = ResultState.ErrorWhileExecuting;
+                        result.Item1.Exceptions.Add(ex);
+                        return result.Item1;
+                    } 
                 }
-                result.Item1.State = ResultState.ErrorWhileExecuting;
             }
 
             // Result

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Tectil.NCommand.Contract;
@@ -86,6 +87,15 @@ namespace Tectil.NCommand.ExecutionFlows.Internals
                 case ResultState.ErrorWhileExecuting:
                     context.IO.WriteLine(@"Error while executing.");
                     context.IO.WriteLine("");
+                    if (context.Configuration.DisplayExceptionDetails)
+                    {
+                        context.IO.WriteLine(string.Join(Environment.NewLine, context.Command.Exceptions.Select(x => x.Message + Environment.NewLine + x.StackTrace)));
+                    }
+                    context.IO.WriteLine("");
+                    if (context.Configuration.TraceExceptions)
+                    {
+                        Trace.WriteLine(context.Command.Exceptions, "Exceptions");
+                    }
                     context.Command.State = ResultState.PromptForCommand;
                     break;
 

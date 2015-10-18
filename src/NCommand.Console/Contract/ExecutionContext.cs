@@ -14,45 +14,35 @@ namespace Tectil.NCommand.Contract
         /// <param name="command">The command.</param>
         /// <param name="runner">The runner.</param>
         /// <param name="arguments">The arguments.</param>
-        public ExecutionContext(ConsoleUtility io, CommandResult command, CommandRunner runner, List<string> arguments)
+        /// <param name="configuration">The configuration.</param>
+        public ExecutionContext(ConsoleUtility io, CommandResult command, CommandRunner runner, List<string> arguments, CommandConfiguration configuration)
         {
             IO = io;
             Command = command;
             Runner = runner;
             Arguments = arguments;
+            Configuration = configuration;
         }
 
         /// <summary>
         /// Gets or sets the io.
         /// </summary>
-        /// <value>
-        /// The io.
-        /// </value>
         // ReSharper disable once InconsistentNaming
         public ConsoleUtility IO { get; set; }
 
         /// <summary>
         /// Gets or sets the command.
         /// </summary>
-        /// <value>
-        /// The command.
-        /// </value>
         public CommandResult Command { get; set; }
 
         /// <summary>
         /// Gets or sets the runner.
         /// </summary>
-        /// <value>
-        /// The runner.
-        /// </value>
         public CommandRunner Runner { get; set; }
 
         /// <summary>
         /// Gets or sets the arguments.
         /// </summary>
-        /// <value>
-        /// The arguments.
-        /// </value>
         public List<string> Arguments { get; set; }
 
         /// <summary>
@@ -62,5 +52,10 @@ namespace Tectil.NCommand.Contract
         /// The commands.
         /// </value>
         public List<CommandInfo> Commands { get; set; }
+
+        /// <summary>
+        /// Gets or sets the context.
+        /// </summary>
+        public CommandConfiguration Configuration { get; set; }
     }
 }

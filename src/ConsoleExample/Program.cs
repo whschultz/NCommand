@@ -13,6 +13,7 @@
         {
             NCommands commands = new NCommands();
             commands.Context.AutodetectCommandAssemblies(); // Loads all assemblies in bin folder and checks for CommandAttribute
+            commands.Context.Configuration.DisplayExceptionDetails = false;
             commands.RunConsole(args);
         }
     }

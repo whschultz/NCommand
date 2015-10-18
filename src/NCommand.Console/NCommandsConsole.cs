@@ -35,7 +35,7 @@ namespace Tectil.NCommand
             var result = runner.Run(string.Join(" ", arguments));
 
             // Execution flow
-            var context = new ExecutionContext(ConsoleUtility.Instance, result, runner, arguments);
+            var context = new ExecutionContext(ConsoleUtility.Instance, result, runner, arguments, commands.Context.Configuration);
             var flowManager = new ExecutionFlowFactory().Get(context); // todo: make this injectable
             flowManager.Run(context);
         }

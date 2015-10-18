@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Tectil.NCommand.Contract
 {
@@ -7,6 +8,15 @@ namespace Tectil.NCommand.Contract
     /// </summary>
     public class CommandResult
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandResult"/> class.
+        /// </summary>
+        public CommandResult()
+        {
+            MissingArguments = new List<ArgumentInfo>();
+            Exceptions = new List<Exception>();
+        }
+
         /// <summary>
         /// Command result.
         /// </summary>
@@ -20,11 +30,19 @@ namespace Tectil.NCommand.Contract
         /// <summary>
         /// Missing arguments.
         /// </summary>
-        public IEnumerable<ArgumentInfo> MissingArguments { get; set; }
+        public List<ArgumentInfo> MissingArguments { get; set; }
 
         /// <summary>
         /// Command info.
         /// </summary>
         public CommandInfo CommandInfo { get; set; }
+
+        /// <summary>
+        /// Gets or sets the exceptions.
+        /// </summary>
+        /// <value>
+        /// The exceptions.
+        /// </value>
+        public List<Exception> Exceptions { get; set; }
     }
 }
