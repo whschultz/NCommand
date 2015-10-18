@@ -63,7 +63,9 @@ namespace Tectil.NCommand.ExecutionFlows.Internals
                             context.Command.State = ResultState.PromptForCommand;
                             break;
                         }
-                        missingArguments.Add("/" + argument.Name + ":" + input); // todo: ReRun (enteredValues) method on CommandRunner (Initial paramaters saved in a state)
+                        var seperator1 = context.Configuration.Notation == ParserNotation.Windows ? '/' : '-';
+                        var seperator2 = context.Configuration.Notation == ParserNotation.Windows ? ':' : '=';
+                        missingArguments.Add(seperator1 + argument.Name + seperator2 + input); // todo: ReRun (enteredValues) method on CommandRunner (Initial paramaters saved in a state)
                         context.IO.WriteLine("");
                     }
                     if (cancelThisCommand) break;

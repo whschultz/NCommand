@@ -53,12 +53,14 @@ namespace Tectil.NCommand.ExecutionFlows
                     break;
 
                 case ResultState.ShowHelpOverview:
+                    var seperator1 = context.Configuration.Notation == ParserNotation.Windows ? '/' : '-';
+                    var seperator2 = context.Configuration.Notation == ParserNotation.Windows ? ':' : '=';
                     context.Commands = context.Command.Result as List<CommandInfo>;
                     int ii = 1;
                     context.IO.WriteLine("Commands available:");
                     context.IO.WriteLine("");
                     context.IO.WriteLine("help                     Command overview (this view)");
-                    context.IO.WriteLine("/mode                    silent - No prompting");
+                    context.IO.WriteLine($"{seperator1}mode                    silent - No prompting");
                     context.IO.WriteLine("[ESC]|exit|quit|cancel   Cancel command");
                     context.IO.WriteLine("");
                     context.Commands?.ForEach(cmd =>
@@ -67,7 +69,7 @@ namespace Tectil.NCommand.ExecutionFlows
                                  cmd.CommandName);
                         cmd?.Arguments.ToList().ForEach(arg =>
                         {
-                            context.IO.Write(" /" + arg.Name + ":" +
+                            context.IO.Write($" {seperator1}" + arg.Name + $"{seperator2}" +
                                      (!string.IsNullOrWhiteSpace(arg.DefaultValue?.ToString())
                                          ? arg.DefaultValue?.ToString()
                                          : "?"));
