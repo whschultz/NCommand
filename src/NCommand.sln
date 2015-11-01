@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleExample", "ConsoleEx
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleExampleRepository", "ConsoleExampleRepository\ConsoleExampleRepository.csproj", "{D7D4BD0E-4F6E-494D-84FE-A9E9A4A89F72}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCommand.WebJobHost", "NCommand.WebJobHost\NCommand.WebJobHost.csproj", "{1145B042-5FF7-47EB-AEA2-C19EB5AB1168}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D7D4BD0E-4F6E-494D-84FE-A9E9A4A89F72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7D4BD0E-4F6E-494D-84FE-A9E9A4A89F72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7D4BD0E-4F6E-494D-84FE-A9E9A4A89F72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1145B042-5FF7-47EB-AEA2-C19EB5AB1168}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1145B042-5FF7-47EB-AEA2-C19EB5AB1168}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1145B042-5FF7-47EB-AEA2-C19EB5AB1168}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1145B042-5FF7-47EB-AEA2-C19EB5AB1168}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
