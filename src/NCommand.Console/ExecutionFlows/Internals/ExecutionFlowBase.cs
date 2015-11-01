@@ -41,22 +41,22 @@ namespace Tectil.NCommand.ExecutionFlows.Internals
 
                 case ResultState.MissingArguments:
 
-                    context.IO.WriteLine(@"{0} arguments missing. ", context.Command.MissingArguments.Count());
+                    context.IO.WriteLine(@"Arguments missing. ", context.Command.MissingArguments.Count());
+                    var argumentsToPromptFor = new List<ArgumentInfo>();
+                    argumentsToPromptFor.AddRange(context.Command.MissingArguments);
+                    argumentsToPromptFor.AddRange(context.Command.MissingDefaultArguments);
+                    for (int i = 0; i < argumentsToPromptFor.Count(); i++)
+                    {
+                        var argument = argumentsToPromptFor.ElementAt(i);
+                        context.IO.WriteLine($"* {argument.Name}: {argument.Description}");
+                    }
                     context.IO.WriteLine("");
                     var cancelThisCommand = false;
                     var missingArguments = new List<string>();
-                    for (int i = 0; i < context.Command.MissingArguments.Count(); i++)
+                    for (int i = 0; i < argumentsToPromptFor.Count(); i++)
                     {
-                        var argument = context.Command.MissingArguments.ElementAt(i);
-                        if (!string.IsNullOrWhiteSpace(argument.Description))
-                        {
-                            context.IO.WriteLine($"DescriptiOn: {argument.Description}");
-                            context.IO.WriteLine($"Enter value for '{argument.Name}':");
-                        }
-                        else
-                        {
-                            context.IO.WriteLine($"Enter value for '{argument.Name}':");
-                        }
+                        var argument = argumentsToPromptFor.ElementAt(i);
+                        context.IO.WriteLine($"Enter value for '{argument.Name}':");
                         var input = context.IO.ReadLine(() => cancelThisCommand = true);
                         if (cancelThisCommand)
                         {

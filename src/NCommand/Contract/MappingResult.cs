@@ -14,6 +14,7 @@ namespace Tectil.NCommand.Contract
         {
             ResultArguments = new List<object>();
             MissingArguments = new List<ArgumentInfo>();
+            MissingDefaultArguments = new List<ArgumentInfo>();
         }
 
         /// <summary>
@@ -30,5 +31,10 @@ namespace Tectil.NCommand.Contract
         /// Missing arguments. If state = MissingArguments
         /// </summary>
         public List<ArgumentInfo> MissingArguments { get; set; }
+
+        /// <summary>
+        /// Missing default arguments. Default arguments not enterd thorugh command line. Need to be prompted for in case of MissingArguments.
+        /// </summary>
+        public List<ArgumentInfo> MissingDefaultArguments { get; set; }
     }
 }

@@ -78,8 +78,6 @@ namespace Tectil.NCommand.ExecutionFlows
                         ii += 1;
                     });
                     context.IO.WriteLine("");
-                    context.IO.WriteLine("Type number or command name.");
-                    context.IO.WriteLine("");
                     context.Command.State = ResultState.PromptForCommand;
                     break;
 

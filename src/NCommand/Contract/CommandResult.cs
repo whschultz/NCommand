@@ -14,6 +14,7 @@ namespace Tectil.NCommand.Contract
         public CommandResult()
         {
             MissingArguments = new List<ArgumentInfo>();
+            MissingDefaultArguments = new List<ArgumentInfo>();
             Exceptions = new List<Exception>();
         }
 
@@ -31,6 +32,11 @@ namespace Tectil.NCommand.Contract
         /// Missing arguments.
         /// </summary>
         public List<ArgumentInfo> MissingArguments { get; set; }
+
+        /// <summary>
+        /// Missing default arguments. Default arguments not passed through command.
+        /// </summary>
+        public List<ArgumentInfo> MissingDefaultArguments { get; set; }
 
         /// <summary>
         /// Command info.

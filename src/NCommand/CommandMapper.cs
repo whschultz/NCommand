@@ -28,6 +28,8 @@ namespace Tectil.NCommand
             // Map
             var mapped = parameters.GroupJoin(arguments.DefaultIfEmpty(), x => x.Name, x => x.Key, (x, y) => new Tuple<ArgumentInfo, object>(x, y.ToList().FirstOrDefault().Value)).ToList();
             var missing = mapped.Where(x => x.Item1.DefaultValue == null && x.Item2 == null).ToList();
+            var defaultMissing = mapped.Where(x => x.Item1.DefaultValue != null && x.Item2 == null).ToList();
+            result.MissingDefaultArguments = defaultMissing.Select(x => x.Item1).ToList();
 
             // Has missing
             if (missing.Any())

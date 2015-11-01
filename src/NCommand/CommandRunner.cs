@@ -127,6 +127,7 @@ namespace Tectil.NCommand
             {
                 result.State = ResultState.MissingArguments;
                 result.MissingArguments = mapped.MissingArguments;
+                result.MissingDefaultArguments = mapped.MissingDefaultArguments;
                 return new Tuple<CommandResult, List<object>, CommandInfo>(result, null, null);
             }
 
