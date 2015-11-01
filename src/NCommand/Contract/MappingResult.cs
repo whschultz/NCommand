@@ -3,7 +3,7 @@
 namespace Tectil.NCommand.Contract
 {
     /// <summary>
-    /// Mapping result
+    /// Mapping result.
     /// </summary>
     public class MappingResult
     {
