@@ -13,10 +13,10 @@ Modes:
 Execution / Interactive multicommand mode: If command returns success or exception, command runs in execution mode and returns. Otherwise interactive mode is started in multicommand mode. 
 
     // Executes and exits after completion:
-	MyCommands.exe copy /sourcePath:[path] /destinationPath:[path]
+	MyCommands.exe copy /sourcepath:[path] /destinationpath:[path]
     
 	// Change to interactive multicommand mode:
-	MyCommands.exe copy /sourcePath:[path]
+	MyCommands.exe copy /sourcepath:[path]
 
 Features: 
 
@@ -45,8 +45,8 @@ Example with `CommandAttribute`: To get started create a new console project and
 	    {	
 	        [Command(description: "Copy resources.")]
 	        public bool Copy( 
-				[Argument(description:"Source path.")] string sourcePath,
-				[Argument(description:"Destination path.")] string destinationPath
+				[Argument(description:"Source path.")] string sourcepath,
+				[Argument(description:"Destination path.")] string destinationpath,
 				[Argument(defaultValue: false)] bool overwrite 
 			)
 	        {
