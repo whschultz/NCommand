@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <RootNamespace>Tectil.NCommand</RootNamespace>
-    <TargetFramework>net45</TargetFramework>
+    <TargetFrameworks>net45;netcoreapp2.2;netstandard2.0</TargetFrameworks>
     <AssemblyTitle>NCommand.Console</AssemblyTitle>
     <Company>Tectil GmbH</Company>
     <Product>NCommand.Console</Product>
     <Description>NCommand.Console is a .NET library to parse command line arguments and map them to commands.</Description>
     <Copyright>$author$</Copyright>
-    <Version>0.1.*</Version>
-    <AssemblyVersion>0.1.*</AssemblyVersion>
-    <FileVersion>0.1.*</FileVersion>
+    <Version>0.1.0</Version>
+    <AssemblyVersion>0.1.0</AssemblyVersion>
+    <FileVersion>0.1.0</FileVersion>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <Authors>Tectil GmbH</Authors>
     <PackageIconUrl>https://github.com/tectil/NCommand/blob/master/Colors.png</PackageIconUrl>
@@ -26,9 +26,7 @@
     <DocumentationFile>bin\$(Configuration)\NCommand.Console.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NCommand\NCommand.csproj" />

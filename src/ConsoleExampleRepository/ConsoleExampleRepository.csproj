@@ -2,7 +2,7 @@
   <PropertyGroup>
     <RootNamespace>NCommand.ConsoleExampleRepository</RootNamespace>
     <AssemblyName>NCommand.ConsoleExampleRepository</AssemblyName>
-    <TargetFramework>net45</TargetFramework>
+    <TargetFrameworks>net45;netstandard2.0;netcoreapp2.2</TargetFrameworks>
     <AssemblyTitle>ConsoleExampleRepository</AssemblyTitle>
     <Product>ConsoleExampleRepository</Product>
     <Copyright>Copyright ©  2015</Copyright>
@@ -14,11 +14,6 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NCommand\NCommand.csproj" />
   </ItemGroup>
