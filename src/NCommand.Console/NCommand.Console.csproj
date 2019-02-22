@@ -1,76 +1,36 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7DDCB0AD-2B11-4FA1-8EB0-5AD2F5DCA137}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tectil.NCommand</RootNamespace>
-    <AssemblyName>NCommand.Console</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>net45</TargetFramework>
+    <AssemblyTitle>NCommand.Console</AssemblyTitle>
+    <Company>Tectil GmbH</Company>
+    <Product>NCommand.Console</Product>
+    <Description>NCommand.Console is a .NET library to parse command line arguments and map them to commands.</Description>
+    <Copyright>$author$</Copyright>
+    <Version>0.1.*</Version>
+    <AssemblyVersion>0.1.*</AssemblyVersion>
+    <FileVersion>0.1.*</FileVersion>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <Authors>Tectil GmbH</Authors>
+    <PackageIconUrl>https://github.com/tectil/NCommand/blob/master/Colors.png</PackageIconUrl>
+    <PackageLicenseUrl>https://github.com/tectil/NCommand/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/tectil/NCommand</PackageProjectUrl>
+    <PackageTags>Console, Task, Command</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\NCommand.Console.XML</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\NCommand.Console.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsoleUtility.cs" />
-    <Compile Include="Contract\ExecutionContext.cs" />
-    <Compile Include="Contract\IExecutionFlowFactory.cs" />
-    <Compile Include="Contract\IExecutionFlow.cs" />
-    <Compile Include="ExecutionFlows\Internals\ExecutionFlowFactory.cs" />
-    <Compile Include="ExecutionFlows\Internals\ExecutionFlowBase.cs" />
-    <Compile Include="ExecutionFlows\RunExecute.cs" />
-    <Compile Include="ExecutionFlows\RunExecuteSilent.cs" />
-    <Compile Include="ExecutionFlows\RunInteractive.cs" />
-    <Compile Include="NCommandsConsole.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <ProjectReference Include="..\NCommand\NCommand.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="NCommand.Console.nuspec" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NCommand\NCommand.csproj">
-      <Project>{eb8a2c3f-39de-4ef3-83ba-f334c617c47c}</Project>
-      <Name>NCommand</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
